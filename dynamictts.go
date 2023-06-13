@@ -15,7 +15,7 @@ type ConfigReadspeaker struct {
 	Speak   string
 }
 
-// 화자와 속도, TTS문자열 받아서 처리 Navercpv
+// 화자와 속도, TTS문자열 받아서 처리 Naver tts-premium
 type ConfigNavercpv struct {
 	Speaker  string
 	Speak    string
@@ -32,7 +32,7 @@ type Speech struct {
 // Readspeaker
 var baseCmd = "/usr/vt/rest/vtspeech"
 
-// Navercpv
+// Naver tts-premium
 var baseUrl = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts"
 
 // Readspeaker
@@ -53,7 +53,7 @@ func SpeakReadspeaker(t ConfigReadspeaker) (*Speech, error) {
 
 }
 
-// Navercpv
+// Naver tts-premium
 func SpeakNavercpv(t ConfigNavercpv) (*Speech, error) {
 
 	client := &http.Client{}
