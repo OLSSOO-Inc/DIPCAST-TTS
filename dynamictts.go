@@ -13,6 +13,7 @@ import (
 type ConfigReadspeaker struct {
 	Speaker string
 	Speak   string
+	baseCmd string
 }
 
 // 화자와 속도, TTS문자열 받아서 처리 Naver tts-premium
@@ -22,6 +23,7 @@ type ConfigNavercpv struct {
 	Speed    string
 	Apikeyid string
 	Apikey   string
+	baseUrl  string
 }
 
 // 파일 형식 지정
@@ -30,17 +32,17 @@ type Speech struct {
 }
 
 // Readspeaker
-var baseCmd = "/usr/vt/rest/vtspeech"
+//var baseCmd = "/usr/vt/rest/vtspeech"
 
 // Naver tts-premium
-var baseUrl = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts"
+//var baseUrl = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts"
 
 // Readspeaker
 func SpeakReadspeaker(t ConfigReadspeaker) (*Speech, error) {
 
 	// REST Command 실행
 	args := []string{"--voice", t.Speaker, "--text", t.Speak, "--lang", "Korean", "--aformat", "mp3", "--mp3rate", "512", "--ip", "127.0.0.1", "--port", "7000", "--srate", "8000"}
-	cmd := exec.Command(baseCmd, args...)
+	cmd := exec.Command(t.baseCmd, args...)
 
 	output, _ := cmd.CombinedOutput()
 
@@ -70,7 +72,7 @@ func SpeakNavercpv(t ConfigNavercpv) (*Speech, error) {
 
 	}
 
-	req, _ := http.NewRequest("POST", baseUrl, bytes.NewBufferString(data.Encode()))
+	req, _ := http.NewRequest("POST", t.baseUrl, bytes.NewBufferString(data.Encode()))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("X-NCP-APIGW-API-KEY-ID", t.Apikeyid)
 	req.Header.Add("X-NCP-APIGW-API-KEY", t.Apikey)
