@@ -1,6 +1,5 @@
-package dynamictts
-
 // 리드코리아 REST API를 통한 TTS변환 /usr/vt/rest/vtspeech --voice hyeryun --text  "안녕하세요,얼쑤팩토리입니다"  --lang Korean, --aformat mp3, --mp3rate 512, --ip 127.0.0.1, --port 7000, --srate 8000
+package dynamictts
 
 import (
 	"bytes"
