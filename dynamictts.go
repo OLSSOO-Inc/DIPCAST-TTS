@@ -13,7 +13,7 @@ import (
 type ConfigReadspeaker struct {
 	Speaker string
 	Speak   string
-	baseCmd string
+	rsBin   string
 }
 
 // 화자와 속도, TTS문자열 받아서 처리 Naver tts-premium
@@ -42,7 +42,7 @@ func SpeakReadspeaker(t ConfigReadspeaker) (*Speech, error) {
 
 	// REST Command 실행
 	args := []string{"--voice", t.Speaker, "--text", t.Speak, "--lang", "Korean", "--aformat", "mp3", "--mp3rate", "512", "--ip", "127.0.0.1", "--port", "7000", "--srate", "8000"}
-	cmd := exec.Command(t.baseCmd, args...)
+	cmd := exec.Command(t.rsBin, args...)
 
 	output, _ := cmd.CombinedOutput()
 
