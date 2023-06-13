@@ -1,2 +1,2 @@
-module dynamictts
-go 1.17
+module github.com/OLSSOO-Inc/Dynamic-TTS/dynamictts
+go 1.20
