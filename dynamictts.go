@@ -50,7 +50,7 @@ func SpeakReadspeaker(t ConfigReadspeaker) (*Speech, error) {
 
 }
 
-// Naver tts-premium
+// Naver tts-premium (화자, 속도, 텍스트)
 func SpeakNavercpv(t ConfigNavercpv) (*Speech, error) {
 
 	client := &http.Client{}
